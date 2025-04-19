@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>แสดงข้อมูล JSON แบบมีโครงสร้าง</title>
+<style>
+  .data-item {
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  .label {
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<h1>ข้อมูลผู้ใช้:</h1>
+<div id="userData"></div>
+
+<script>
+  // ข้อมูล JSON จำลองจาก API
+  const userDataJSON = `[
+    {
+      "id": 1,
+      "name": "ฟาริส อาจหาญ",
+      "email": "gmail@gmail.com",
+      "city": "กรุงเทพฯ"
+    },
+    {
+      "id": 2,
+      "name": "ฟาริส ปีศาล",
+      "email": "gmail2.com",
+      "city": "ภูเก็ต"
+    }
+  ]`;
+
+  // แปลง JSON string เป็น JavaScript object (array)
+  const users = JSON.parse(userDataJSON);
+
+  // เข้าถึง element ที่จะแสดงข้อมูล
+  const userDataDiv = document.getElementById("userData");
+
+  // วนลูปผ่านข้อมูลผู้ใช้แต่ละคนและสร้าง HTML เพื่อแสดงผล
+  users.forEach(user => {
+    const userDiv = document.createElement("div");
+    userDiv.classList.add("data-item");
+
+    userDiv.innerHTML = `
+      <p><span class="label">ID:</span> ${user.id}</p>
+      <p><span class="label">ชื่อ:</span> ${user.name}</p>
+      <p><span class="label">อีเมล:</span> ${user.email}</p>
+      <p><span class="label">เมือง:</span> ${user.city}</p>
+    `;
+
+    userDataDiv.appendChild(userDiv);
+  });
+</script>
+
+</body>
+</html>
