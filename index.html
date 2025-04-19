@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Displaying Structured JSON Data</title>
+<style>
+  .data-item {
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  .label {
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<h1>User Data:</h1>
+<div id="userData"></div>
+
+<script>
+  // Sample JSON data from a simulated API
+  const userDataJSON = `[
+    {
+      "id": 1,
+      "name": "Alice Smith",
+      "email": "alice@example.com",
+      "city": "London"
+    },
+    {
+      "id": 2,
+      "name": "Bob Johnson",
+      "email": "bob@example.com",
+      "city": "Paris"
+    }
+  ]`;
+
+  // Parse the JSON string into a JavaScript object (array)
+  const users = JSON.parse(userDataJSON);
+
+  // Get the element where the user data will be displayed
+  const userDataDiv = document.getElementById("userData");
+
+  // Loop through each user in the array and create HTML to display their information
+  users.forEach(user => {
+    const userDiv = document.createElement("div");
+    userDiv.classList.add("data-item");
+
+    userDiv.innerHTML = `
+      <p><span class="label">ID:</span> ${user.id}</p>
+      <p><span class="label">Name:</span> ${user.name}</p>
+      <p><span class="label">Email:</span> ${user.email}</p>
+      <p><span class="label">City:</span> ${user.city}</p>
+    `;
+
+    userDataDiv.appendChild(userDiv);
+  });
+</script>
+
+</body>
+</html>
